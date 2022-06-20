@@ -5,7 +5,7 @@ import "./App.css"
 import Header from "./components/Header/Header.jsx"
 import Instructions  from "./components/Instructions/Instructions"
 import Chip from "./components/Chip/Chip.jsx"
-
+import NutritionalLabel from "./components/NutritionalLabel/NutritionalLabel"
 // don't move this!
 export const appInfo = {
   title: `Fast Food Feud 🍔!`,
@@ -26,7 +26,18 @@ export const appInfo = {
 const { data, categories, restaurants } = createDataSet()
 
 
+
 export function App() {
+  const[category,setCategory]=React.useState('')
+
+  //const[restaurant,setRestaurant]=React.useState('')
+  var currentMenuItems=data.filter(newcategory=>{
+    return newcategory.food_category===category;
+  });
+
+  { currentMenuItems.map(category=>
+    <Chip label={category} setCategory={setCategory} onClick/>)
+  }
   return (
     <main className="App">
     
@@ -37,7 +48,7 @@ export function App() {
           {/* YOUR CODE HERE */}
           
           { categories.map(category=>
-            <Chip label={category}/>)
+            <Chip label={category} setCategory={setCategory}/>)
           }
         </div>
       </div>
@@ -53,7 +64,8 @@ export function App() {
           <div className="restaurants options">{
           
           restaurants.map(restaurant=>
-            <p></p>)
+            <Chip label={restaurant} setCategory={setCategory}/>)
+          
           }
         </div>
 </div>
@@ -72,7 +84,12 @@ export function App() {
           </div>
 
           {/* NUTRITION FACTS */}
-          <div className="NutritionFacts nutrition-facts">{/* YOUR CODE HERE */}</div>
+
+          <div className="NutritionFacts nutrition-facts">{/* YOUR CODE HERE 
+          */
+          
+  
+        }</div>
         </div>
 
         <div className="data-sources">
@@ -80,6 +97,7 @@ export function App() {
         </div>
       </div>
     </main>
+   
   )
 }
 
