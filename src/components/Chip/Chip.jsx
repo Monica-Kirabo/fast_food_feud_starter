@@ -1,10 +1,11 @@
 import * as React from "react"
 import "./Chip.css"
 
-export function Chip({ label = "", isActive = false }) {
+function Chip({ label = "", isActive = false}) {
+
   return (
     <button className="chip">
-      <p className="label"></p>
+      <p className="label" >{label}</p>
       <span className="close" role="button">{`X`}</span>
     </button>
   )
