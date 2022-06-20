@@ -5,7 +5,6 @@ import "./App.css"
 import Header from "./components/Header/Header.jsx"
 import Instructions  from "./components/Instructions/Instructions"
 import Chip from "./components/Chip/Chip.jsx"
-//import { render } from "@testing-library/react"
 
 // don't move this!
 export const appInfo = {
