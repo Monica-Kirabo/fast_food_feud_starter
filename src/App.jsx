@@ -105,7 +105,7 @@ export function App() {
           */
           
 
-          
+           selectedMenuItem ? <NutritionalLabel item={selectedMenuItem}/>: null
   
         }</div>
         </div>
