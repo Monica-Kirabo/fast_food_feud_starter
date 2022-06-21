@@ -59,7 +59,7 @@ export function App() {
           
           { 
           categories.map((category,idx)=>
-            <Chip key={idx} label={category} isActive={ category === selectedCategory } iClick={()=>{handleclickCategory(category)}} />)
+            <Chip key={idx} label={category} isActive= { category === selectedCategory } iClick={()=>{handleclickCategory(category)} } />)
           }
         </div>
       </div>
