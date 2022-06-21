@@ -28,9 +28,9 @@ const { data, categories, restaurants } = createDataSet()
 
 
 export function App() {
-  const[category,setCategory]=React.useState('')
-  const[restaurant,setRestaurant]=React.useState('')
-  const[item,selectedMenuItem]=React.useState('')
+  const[selectedCategory,setCategory]=React.useState(null)
+  const[selectedRestaurant,setRestaurant]=React.useState(null)
+  const[selectedMenuItem,setSelectedMenuItem]=React.useState(null)
   //const[restaurant,setRestaurant]=React.useState('')
   function handleclickCategory(category){
     setCategory(category);
@@ -39,10 +39,10 @@ export function App() {
     setRestaurant(restaurant);
   }
   function handleclickitems(item){
-    selectedMenuItem(item);
+    setSelectedMenuItem(item);
   }
   var currentMenuItems=data.filter(newcategory=>{
-    return newcategory.food_category===category;
+    return newcategory.food_category === selectedCategory && newcategory.restaurant === selectedRestaurant;
   });
 
  
@@ -59,7 +59,7 @@ export function App() {
           
           { 
           categories.map((category,idx)=>
-            <Chip key={idx} label={category} isActive={category===selectedCategory} iClick={()=>{handleclickCategory(category)}} />)
+            <Chip key={idx} label={category} isActive={ category === selectedCategory } iClick={()=>{handleclickCategory(category)}} />)
           }
         </div>
       </div>
@@ -105,7 +105,7 @@ export function App() {
           */
           
 
-           selectedMenuItem ? <NutritionalLabel item={selectedMenuItem}/>: null
+           selectedMenuItem ? <NutritionalLabel item={selectedMenuItem}/> : null
   
         }</div>
         </div>
