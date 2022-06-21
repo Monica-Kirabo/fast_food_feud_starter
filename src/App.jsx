@@ -29,15 +29,25 @@ const { data, categories, restaurants } = createDataSet()
 
 export function App() {
   const[category,setCategory]=React.useState('')
-
+  const[restaurant,setRestaurant]=React.useState('')
+  const[item,selectedMenuItem]=React.useState('')
   //const[restaurant,setRestaurant]=React.useState('')
+  function handleclickCategory(category){
+    setCategory(category);
+  }
+  function handleclickRestaurant(restaurant){
+    setRestaurant(restaurant);
+  }
+  function handleclickitems(item){
+    selectedMenuItem(item);
+  }
   var currentMenuItems=data.filter(newcategory=>{
     return newcategory.food_category===category;
   });
 
-  { currentMenuItems.map(category=>
-    <Chip label={category} setCategory={setCategory} onClick/>)
-  }
+ 
+
+
   return (
     <main className="App">
     
@@ -47,8 +57,9 @@ export function App() {
           <h2 className="title">Categories</h2>
           {/* YOUR CODE HERE */}
           
-          { categories.map(category=>
-            <Chip label={category} setCategory={setCategory}/>)
+          { 
+          categories.map((category,idx)=>
+            <Chip key={idx} label={category} isActive={category===selectedCategory} iClick={()=>{handleclickCategory(category)}} />)
           }
         </div>
       </div>
@@ -63,8 +74,8 @@ export function App() {
           <h2 className="title">Restaurants</h2>
           <div className="restaurants options">{
           
-          restaurants.map(restaurant=>
-            <Chip label={restaurant} setCategory={setCategory}/>)
+          restaurants.map((restaurant,idx)=>
+            <Chip key={idx} label={restaurant} isActive={restaurant===selectedRestaurant} iClick={()=>{handleclickRestaurant(restaurant)}} />)
           
           }
         </div>
@@ -80,13 +91,20 @@ export function App() {
         <div className="MenuDisplay display">
           <div className="MenuItemButtons menu-items">
             <h2 className="title">Menu Items</h2>
-            {/* YOUR CODE HERE */}
+            {/* YOUR CODE HERE */
+            
+            currentMenuItems.map((items,idx)=>
+            <Chip key={idx} label={items.item_name} isActive={selectedMenuItem && selectedMenuItem.item_name==items.item_name} iClick={()=>{handleclickitems(items)}} />)
+          
+          }
           </div>
 
           {/* NUTRITION FACTS */}
 
           <div className="NutritionFacts nutrition-facts">{/* YOUR CODE HERE 
           */
+          
+
           
   
         }</div>
