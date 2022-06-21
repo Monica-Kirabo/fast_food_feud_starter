@@ -104,8 +104,9 @@ export function App() {
           <div className="NutritionFacts nutrition-facts">{/* YOUR CODE HERE 
           */
           
-
-           selectedMenuItem ? <NutritionalLabel item={selectedMenuItem}/> : null
+         
+          selectedMenuItem ? <NutritionalLabel item={selectedMenuItem}/> : null
+        
   
         }</div>
         </div>
